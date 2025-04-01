@@ -20,20 +20,19 @@
 
 }
 .body {
-    border: 1px solid black ;
+    
 }
 
 .res-card {
-    width: 200px;
-    border: 1px solid black;
+    width: 200px;   
     margin: 10px;
-    padding: 5px    ;
+    padding: 5px;
 }
 
 .search {
-    margin: 10px;
-    width: 200px;
-    border: 1px solid black;
+    margin: 1em;
+    justify-content: center;
+    align-items: center;
 }
 
 .res-logo {
@@ -49,4 +48,8 @@
 .filter-btn {
     margin: 1em;
     padding: 0.5em;
+}
+
+.filter {
+    display: flex;
 }

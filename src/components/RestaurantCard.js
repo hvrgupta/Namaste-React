@@ -11,19 +11,22 @@ const RestaurantCardComponent = (props) => {
         avgRating,
         costForTwo,
         cloudinaryImageId,
-        deliveryTime
-    } = resData?.data;
+        sla
+    } = resData?.info;
+
+  
     return  (
         // One way to declare style inline
             // <div className='res-card' style={{backgroundColor : 'black'}} >
+
             <div className='res-card' style={inlineStyle} >
                 <img 
                 src={CDN_URL + cloudinaryImageId} className='res-logo'></img>
                 <h3>{name}</h3>
                 <h4>{cuisines.join(', ')}</h4>
                 <h4>{avgRating}</h4>
-                <h4>₹{costForTwo / 100} for TWO</h4>
-                <h4>{deliveryTime} minutes</h4>
+                <h4>{costForTwo}</h4>
+                <h4>{sla.deliveryTime} minutes</h4>
             </div>
     );
     

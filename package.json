@@ -20,6 +20,7 @@
   "homepage": "https://github.com/hvrgupta/react#readme",
   "dependencies": {
     "browserslist": "^4.21.10",
+    "namaste-react": "file:",
     "parcel": "^2.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
