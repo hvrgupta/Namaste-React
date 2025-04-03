@@ -2,6 +2,7 @@ import RestaurantCardComponent from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import ShimmerComponent from "./Shimmer";
 import { SWIGGY_API } from "../utils/constants";
+import { Link } from "react-router";
 
 
 // State variable in React
@@ -19,18 +20,21 @@ const BodyComponent = () =>  {
 
     // Called after the component renders (component mounts or state changes)
     useEffect(() => {
+        console.log("useeffec");
+        const fetchData =  async() => {
+            console.log("inside fetch data");
+            const response = await fetch(SWIGGY_API);
+        
+            const restaurantData = await response.json();
+            console.log(restaurantData);
+    
+            const restaurants = restaurantData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            
+            setListOfRestaurants(restaurants);
+            setFilteredRestaurants(restaurants);
+        }
         fetchData();
     },[]);
-
-    fetchData =  async() => {
-        const response = await fetch(SWIGGY_API);
-    
-        const restaurantData = await response.json();
-        console.log(restaurantData);
-        
-        setListOfRestaurants(restaurantData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurants(restaurantData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    }
 
     // let listOfRestaurants = resList;
 
@@ -75,7 +79,9 @@ const BodyComponent = () =>  {
             <div className='res-container'>
                 {/* <RestaurantCardComponent resName="GK" cuisines="North,Punjabi,veg" rating="4 stars" eta="25 minutes" /> */}
                 {  
-                    filteredRestaurants.map(res =><RestaurantCardComponent key={res.info.id} resData={res} />)
+                    filteredRestaurants.map(res =>
+                    <Link key={res.info.id} to={"/restaurants/"+res.info.id}><RestaurantCardComponent resData={res} 
+                    /></Link>)
                 }
             </div>
         </div>
