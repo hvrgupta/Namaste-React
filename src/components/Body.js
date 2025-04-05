@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ShimmerComponent from "./Shimmer";
 import { SWIGGY_API } from "../utils/constants";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 
 // State variable in React
@@ -35,6 +36,17 @@ const BodyComponent = () =>  {
         }
         fetchData();
     },[]);
+
+    const onlineStatus = useOnlineStatus();
+
+    if(onlineStatus === false) {
+        return(
+            <div>
+                <h1>It seems you are Offline!</h1>
+                <h4>Please check your internet connection</h4>
+            </div>
+        );
+    } 
 
     // let listOfRestaurants = resList;
 

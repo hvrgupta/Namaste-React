@@ -39,6 +39,9 @@ export const HeaderComponent = () => {
                 </li>
                 <li>Contact us</li>
                 <li>Cart</li>
+                <li>
+                    <Link to="/grocery">Grocery</Link>
+                </li>
                 <button className="filter-btn" onClick={() => {
                     setBtnState(!btnState);
                 }}>{btnState ? "Login":"Logout"}</button>
