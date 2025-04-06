@@ -61,13 +61,13 @@ const BodyComponent = () =>  {
     ( 
     <ShimmerComponent /> 
     ): ( 
-        <div className='body'>
-            <div className='filter'>
-                <div className="search">
-                    <input type="text" className="search-box" value={searchTxt} onChange={(e) => {
+        <div>
+            <div className='flex align-middle m-2'>
+                <div className="">
+                    <input type="text" className="border border-solid border-black rounded-lg" value={searchTxt} onChange={(e) => {
                         setSearchTxt(e.target.value);
                     }}></input>
-                    <button onClick={() => {
+                    <button className="px-4 py-1 bg-green-100 m-4 rounded-lg" onClick={() => {
                         const filteredList = listOfRestaurants.filter((res) => {
                             return res.info.name.toLowerCase().includes(searchTxt.toLowerCase());
                         });
@@ -76,7 +76,7 @@ const BodyComponent = () =>  {
                     }}>Search</button>
                 </div>
                 <div>
-                <button className="filter-btn" 
+                <button className="px-4 py-1 bg-gray-200 m-4 rounded-lg" 
                 onClick={() => {
                     const filteredList =  listOfRestaurants.filter((res) => {
                         return res.info.avgRating > 4;
@@ -88,11 +88,12 @@ const BodyComponent = () =>  {
                 </button>
                 </div>
             </div>
-            <div className='res-container'>
+            <div className='flex flex-wrap m-4 p-4 rounded-lg'>
                 {/* <RestaurantCardComponent resName="GK" cuisines="North,Punjabi,veg" rating="4 stars" eta="25 minutes" /> */}
                 {  
                     filteredRestaurants.map(res =>
-                    <Link key={res.info.id} to={"/restaurants/"+res.info.id}><RestaurantCardComponent resData={res} 
+                    <Link key={res.info.id} to={"/restaurants/"+res.info.id}>
+                        <RestaurantCardComponent resData={res} 
                     /></Link>)
                 }
             </div>

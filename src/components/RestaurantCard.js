@@ -19,10 +19,10 @@ const RestaurantCardComponent = (props) => {
         // One way to declare style inline
             // <div className='res-card' style={{backgroundColor : 'black'}} >
 
-            <div className='res-card' style={inlineStyle} >
-                <img 
-                src={CDN_URL + cloudinaryImageId} className='res-logo'></img>
-                <h3>{name}</h3>
+            <div className='p-4 m-2 w-50 bg-gray-100 hover:bg-gray-50 shadow-md' style={inlineStyle} >
+                <img  
+                src={CDN_URL + cloudinaryImageId} className='w-50 rounded-2xl'></img>
+                <h3 className="font-bold py-1">{name}</h3>
                 <h4>{cuisines.join(', ')}</h4>
                 <h4>{avgRating}</h4>
                 <h4>{costForTwo}</h4>

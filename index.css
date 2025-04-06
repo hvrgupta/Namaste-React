@@ -1,4 +1,6 @@
-.header {
+@import "tailwindcss";
+
+/* .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,4 +54,4 @@
 
 .filter {
     display: flex;
-}
+} */

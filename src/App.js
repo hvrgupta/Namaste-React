@@ -27,6 +27,7 @@ Footer
 const Grocery = lazy(() => import('./components/Grocery'));
 
 const AppLayout = () => (
+    
     <div className='app'>
         <HeaderComponent />
         <Outlet />

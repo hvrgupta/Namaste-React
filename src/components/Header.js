@@ -18,14 +18,14 @@ export const HeaderComponent = () => {
     },[]);
     
     return (    
-        <div className='header'>
-        <div className='logo-container'>
+        <div className='flex justify-between shadow-lg'>
+        <div className='w-20'>
             <img className='logo' 
             src={APP_LOGO} alt='app=logo'>
             </img>
         </div>
-        <div className='nav-items'>
-            <ul>
+        <div className='flex'>
+            <ul className="flex p-4 m-4 w-100 justify-around">
                 <li>
                     {
                     /* to route to other pages without reloading the page 

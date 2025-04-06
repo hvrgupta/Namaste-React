@@ -1,4 +1,3 @@
-
 export const AboutComponent = () => {
     return (
         <div>
