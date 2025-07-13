@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Learning React",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel index.html --no-cache",
     "build": "parcel build index.html",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rd /s /q .parcel-cache && rd /s /q dist"
   },
   "repository": {
     "type": "git",
