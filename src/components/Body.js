@@ -1,4 +1,4 @@
-import RestaurantCardComponent from "./RestaurantCard";
+import RestaurantCardComponent, {withPromotedLabel} from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import ShimmerComponent from "./Shimmer";
 import { SWIGGY_API } from "../utils/constants";
@@ -18,6 +18,7 @@ const BodyComponent = () =>  {
     const [listOfRestaurants,setListOfRestaurants] = useState([]);
     const [searchTxt,setSearchTxt] = useState("");
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+    const RestaurantCardPromoted = withPromotedLabel(RestaurantCardComponent);
 
     // Called after the component renders (component mounts or state changes)
     useEffect(() => {
@@ -28,9 +29,7 @@ const BodyComponent = () =>  {
         
             const restaurantData = await response.json();
             console.log(restaurantData);
-    
             const restaurants = restaurantData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-            
             setListOfRestaurants(restaurants);
             setFilteredRestaurants(restaurants);
         }
@@ -93,8 +92,11 @@ const BodyComponent = () =>  {
                 {  
                     filteredRestaurants.map(res =>
                     <Link key={res.info.id} to={"/restaurants/"+res.info.id}>
-                        <RestaurantCardComponent resData={res} 
-                    /></Link>)
+                        {/* Higher Order Component : If the restaurant is promoted, give it promoted label. */}
+                        {
+                            res.info.promoted ? (<RestaurantCardPromoted resData={res} />) : (<RestaurantCardComponent resData={res} />)
+                        }
+                    </Link>)
                 }
             </div>
         </div>

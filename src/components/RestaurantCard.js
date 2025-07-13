@@ -1,6 +1,5 @@
 import { CDN_URL, inlineStyle } from "../utils/constants";
 
-
 // const RestaurantCardComponent= (props) => { -> instead of using props I will be destructuring the object
 const RestaurantCardComponent = (props) => {
     // console.log(props);
@@ -30,6 +29,22 @@ const RestaurantCardComponent = (props) => {
             </div>
     );
     
+}
+
+// Higher order component (Enhance the input component)
+// input -> RestaurantCard -> RestaurantCardPromoted
+
+export const withPromotedLabel = (RestaurantCardComponent) => {
+    return (props) => {
+        const { resData } = props;
+        return  (
+            <div>
+                <label>Promoted</label>
+                <RestaurantCardComponent resData={resData}/>
+            </div>
+
+    );
+    }
 }
 
 export default RestaurantCardComponent;
