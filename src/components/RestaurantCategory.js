@@ -1,14 +1,10 @@
-import { useState } from "react";
 import ItemListComponent from "./ItemList";
 
 const RestaurantCategoryComponent = (props) => {
-    const { category } = props;
-    const [show,setShow] = useState(false);
-    
+    const { category, showItems, setShowIdx } = props;
     const handleClick = () => {
-        setShow(!show);
+        setShowIdx();
     }
-
     return (
         <div>
             <div className="w-8/12 bg-gray-50 shadow-xl p-4 mx-auto my-4">
@@ -17,7 +13,7 @@ const RestaurantCategoryComponent = (props) => {
                     <span>⬇️</span>
                 </div>
                 {
-                    show && <ItemListComponent items={category.itemCards}/>
+                    showItems && <ItemListComponent items={category.itemCards}/>
                 }
             </div>
         </div>

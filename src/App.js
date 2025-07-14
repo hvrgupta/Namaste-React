@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { HeaderComponent }  from './components/Header';
 import BodyComponent from './components/Body';
@@ -7,6 +7,7 @@ import { AboutComponent } from './components/About';
 import { Error } from './components/Error';
 import { RestaurantMenu } from './components/RestaurantMenu';
 import Grocery from './components/Grocery';
+import UserContext from './utils/UserContext';
 
 /* 
 Heading
@@ -26,15 +27,28 @@ Footer
 // Lazy loading (this loads only when Grocery component is invoked)
 const Grocery = lazy(() => import('./components/Grocery'));
 
-const AppLayout = () => (
-    
-    <div className='app'>
-        <HeaderComponent />
-        <Outlet />
-        {/* <BodyComponent /> */}
-        {/* <FooterComponent /> */} 
-    </div>
-);
+const AppLayout = () => {
+
+        const [userName, setUserName] = useState();
+
+        useEffect(() => {
+            const data = {
+                name: 'Harsh'
+            }
+            setUserName(data.name);
+        },[])
+
+        return ( 
+            <UserContext.Provider value={{loggedInUser: userName, setUserName}} >
+                <div className='app'>
+                    <HeaderComponent />
+                    <Outlet />
+                    {/* <BodyComponent /> */}
+                    {/* <FooterComponent /> */} 
+                </div>
+            </UserContext.Provider>
+        )
+}
 
 const appRouter = createBrowserRouter([
     {

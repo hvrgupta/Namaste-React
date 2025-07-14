@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Learning React",
   "scripts": {
-    "start": "parcel index.html --no-cache",
+    "start": "parcel index.html",
     "build": "parcel build index.html",
     "test": "jest",
     "clean": "rd /s /q .parcel-cache && rd /s /q dist"

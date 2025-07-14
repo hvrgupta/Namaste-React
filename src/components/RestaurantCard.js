@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { CDN_URL, inlineStyle } from "../utils/constants";
+import UserContext from "../utils/UserContext";
 
 // const RestaurantCardComponent= (props) => { -> instead of using props I will be destructuring the object
 const RestaurantCardComponent = (props) => {
     // console.log(props);
     const { resData } = props;
+    // Using context everywhere in the application
+    const { loggedInUser} = useContext(UserContext);
     const {
         name,
         cuisines,

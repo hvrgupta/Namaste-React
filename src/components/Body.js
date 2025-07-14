@@ -1,9 +1,10 @@
 import RestaurantCardComponent, {withPromotedLabel} from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ShimmerComponent from "./Shimmer";
 import { SWIGGY_API } from "../utils/constants";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 
 // State variable in React
@@ -29,7 +30,7 @@ const BodyComponent = () =>  {
         
             const restaurantData = await response.json();
             console.log(restaurantData);
-            const restaurants = restaurantData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            const restaurants = restaurantData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
             setListOfRestaurants(restaurants);
             setFilteredRestaurants(restaurants);
         }
@@ -46,6 +47,10 @@ const BodyComponent = () =>  {
             </div>
         );
     } 
+
+    const { setUserName, loggedInUser } = useContext(UserContext);
+
+
 
     // let listOfRestaurants = resList;
 
@@ -85,6 +90,11 @@ const BodyComponent = () =>  {
                 >
                 Top Rated Restaurants
                 </button>
+                </div>
+                <div className="flex p-2 m-2">
+                    <input type="text" className="border border-solid border-black rounded-lg" value={loggedInUser} onChange={(e) => {
+                        setUserName(e.target.value);
+                    }}></input>
                 </div>
             </div>
             <div className='flex flex-wrap m-4 p-4 rounded-lg'>
