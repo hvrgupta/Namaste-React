@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { APP_LOGO } from "../utils/constants";
 import { Link } from "react-router";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 // export header component 
 // named export -- used to export multiple things
@@ -19,6 +20,10 @@ export const HeaderComponent = () => {
     useEffect(() => {
         console.log("Header.js -- useEffect");
     },[]);
+
+
+    // useSelector is used to access the state from the store.
+    const cartItems = useSelector((store) => store.cart.items);
     
     return (    
             <div className="flex justify-between">
@@ -45,6 +50,9 @@ export const HeaderComponent = () => {
                         <li>Contact us</li>
                         <li>
                             <Link to="/grocery">Grocery</Link>
+                        </li>
+                        <li className="font-bold">
+                            <Link to="/cart">Cart-({cartItems.length})</Link>
                         </li>
                         <button className="filter-btn" onClick={() => {
                             setBtnState(!btnState);

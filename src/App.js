@@ -8,6 +8,9 @@ import { Error } from './components/Error';
 import { RestaurantMenu } from './components/RestaurantMenu';
 import Grocery from './components/Grocery';
 import UserContext from './utils/UserContext';
+import { Provider } from 'react-redux';
+import appstore from './utils/appstore';
+import Cart from './components/Cart';
 
 /* 
 Heading
@@ -39,14 +42,16 @@ const AppLayout = () => {
         },[])
 
         return ( 
-            <UserContext.Provider value={{loggedInUser: userName, setUserName}} >
-                <div className='app'>
-                    <HeaderComponent />
-                    <Outlet />
-                    {/* <BodyComponent /> */}
-                    {/* <FooterComponent /> */} 
-                </div>
-            </UserContext.Provider>
+            <Provider store={appstore}>
+                <UserContext.Provider value={{loggedInUser: userName, setUserName}} >
+                    <div className='app'>
+                        <HeaderComponent />
+                        <Outlet />
+                        {/* <BodyComponent /> */}
+                        {/* <FooterComponent /> */} 
+                    </div>
+                </UserContext.Provider>
+            </Provider>
         )
 }
 
@@ -70,11 +75,16 @@ const appRouter = createBrowserRouter([
             {
                 path: '/grocery',
                 element: <Suspense fallback={<h1>Loading...</h1>}><Grocery /></Suspense>
+            },
+            {
+                path: '/cart',
+                element: <Cart />
             }
         ],
         errorElement: <Error />
     }
 ]);
+
  
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<RouterProvider router={appRouter} />);

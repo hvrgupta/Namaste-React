@@ -29,8 +29,9 @@ const BodyComponent = () =>  {
             const response = await fetch(SWIGGY_API);
         
             const restaurantData = await response.json();
-            console.log(restaurantData);
-            const restaurants = restaurantData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            console.log('restaurantData', restaurantData);
+            const restaurants = restaurantData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            console.log('restaurants', restaurants);
             setListOfRestaurants(restaurants);
             setFilteredRestaurants(restaurants);
         }
